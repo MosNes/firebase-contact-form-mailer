@@ -1,23 +1,32 @@
 const functions = require("firebase-functions");
-const { defineInt, defineString } = require('firebase-functions/params');
+// const { defineInt, defineString } = require('firebase-functions/params');
 
 //import nodemailer
 const nodemailer = require('nodemailer');
 
 //define env parameters
-const recipient = defineString('EMAIL_RECIPIENT');
-const user = defineString('APP_USER');
-const password = defineString('APP_PASSWORD');
+const recipient = process.env.EMAIL_RECIPIENT;
+const user = process.env.APP_USER;
+const password = process.env.APP_PASSWORD;
 
-functions.logger.log([recipient.value(), user.value()]);
+// functions.logger.log([recipient.value(), user.value()]);
 
 //set up nodemailer transport envelope
 const mailTransport = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    // auth: {
+    //     user: user,
+    //     password: password,
+    // },
     auth: {
-        user: user.value(),
-        password: password.value(),
-    },
+        type: "OAuth2",
+        user: user,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+    }
 });
 
 //function to build email template
@@ -42,7 +51,7 @@ const sendEmail = async (name, email, message) => {
     //add sender and recipient
     const mailOptions = {
         from: 'MosNes Portfolio Site <7hekarl@gmail.com>',
-        to: recipient.value()
+        to: recipient
     };
 
     //add message HTML body
