@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Cloud function for firebase to send emails",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/MosNes/firebase-contact-form-mailer/issues"
   },
-  "homepage": "https://github.com/MosNes/firebase-contact-form-mailer#readme"
+  "homepage": "https://github.com/MosNes/firebase-contact-form-mailer#readme",
+  "dependencies": {
+    "firebase-admin": "^11.5.0",
+    "firebase-functions": "^4.2.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.0.0"
+  }
 }
