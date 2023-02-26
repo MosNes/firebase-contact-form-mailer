@@ -9,12 +9,14 @@ const recipient = defineString('EMAIL_RECIPIENT');
 const user = defineString('APP_USER');
 const password = defineString('APP_PASSWORD');
 
+functions.logger.log([recipient.value(), user.value()]);
+
 //set up nodemailer transport envelope
 const mailTransport = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: user,
-        password: password,
+        user: user.value(),
+        password: password.value(),
     },
 });
 
@@ -40,7 +42,7 @@ const sendEmail = async (name, email, message) => {
     //add sender and recipient
     const mailOptions = {
         from: 'MosNes Portfolio Site <7hekarl@gmail.com>',
-        to: recipient
+        to: recipient.value()
     };
 
     //add message HTML body
@@ -71,4 +73,6 @@ exports.sendMail = functions.https.onRequest( (req, res) => {
     const response = sendEmail(data.name, data.email, data.message);
 
     res.json(response);
-})
+});
+
+exports.sendEmail = sendEmail;
