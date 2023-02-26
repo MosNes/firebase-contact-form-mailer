@@ -8,3 +8,8 @@ const functions = require("firebase-functions");
 //   response.send("Hello from Firebase!");
 // });
 
+exports.sendMail = functions.https.onRequest( (req, res) => {
+    const data = req.body;
+
+    res.json(data);
+})
