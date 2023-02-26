@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 //define env parameters
 const recipient = process.env.EMAIL_RECIPIENT;
 const user = process.env.APP_USER;
-const password = process.env.APP_PASSWORD;
+// const password = process.env.APP_PASSWORD;
 
 // functions.logger.log([recipient.value(), user.value()]);
 
