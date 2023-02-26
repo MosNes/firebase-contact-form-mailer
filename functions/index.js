@@ -1,5 +1,9 @@
 const functions = require("firebase-functions");
-// const { defineInt, defineString } = require('firebase-functions/params');
+
+//import CORS middleware, and set to allow any origin
+const cors = require('cors')({
+    origin: true,
+});
 
 //import nodemailer
 const nodemailer = require('nodemailer');
@@ -77,11 +81,15 @@ const sendEmail = async (name, email, message) => {
 }
 
 exports.sendMail = functions.https.onRequest( (req, res) => {
-    const data = req.body;
 
-    const response = sendEmail(data.name, data.email, data.message);
+    //start using cors middleware
+    cors(req, res, () => {
+        const data = req.body;
 
-    res.json(response);
+        const response = sendEmail(data.name, data.email, data.message);
+
+        res.status(200).send(response);
+    });
 });
 
 exports.sendEmail = sendEmail;
