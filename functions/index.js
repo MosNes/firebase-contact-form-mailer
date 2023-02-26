@@ -1,14 +1,10 @@
-// The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
-const functions = require('firebase-functions');
+const functions = require("firebase-functions");
 
-//import nodemailer
-const nodemailer = require('nodemailer');
+// // Create and deploy your first functions
+// // https://firebase.google.com/docs/functions/get-started
+//
+// exports.helloWorld = functions.https.onRequest((request, response) => {
+//   functions.logger.info("Hello logs!", {structuredData: true});
+//   response.send("Hello from Firebase!");
+// });
 
-// define cloud function called sendMail to trigger on HTTPS request
-exports.sendMail = functions.https.onRequest(async (req, res) => {
-
-    //get body of post request
-    const data = req.body;
-
-    res.json(data);
-})
