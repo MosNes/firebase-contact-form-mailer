@@ -1,0 +1,20 @@
+{
+  "name": "firebase-contact-form-mailer",
+  "version": "1.0.0",
+  "description": "Cloud function for firebase to send emails",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MosNes/firebase-contact-form-mailer.git"
+  },
+  "author": "Moses Nester",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/MosNes/firebase-contact-form-mailer/issues"
+  },
+  "homepage": "https://github.com/MosNes/firebase-contact-form-mailer#readme"
+}
